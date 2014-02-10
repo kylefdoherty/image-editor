@@ -1,0 +1,1 @@
+This is a modified version of Chris Pines image renamer from Learn to Program.  My script will allow to rename and resize the images.
