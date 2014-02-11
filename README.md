@@ -1,1 +1,4 @@
-This is a modified version of Chris Pines image renamer from Learn to Program.  My script will allow to rename and resize the images.
+Usage
+=====
+
+    ruby image_edit.rb --width 1000 --output-dir ../output image1.jpg image2.jpg
