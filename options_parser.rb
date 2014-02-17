@@ -1,24 +1,34 @@
+require 'optparse'
 class OptionsParser
-	attr_accessor :width, :output, :input_files
+	
 
 	def initialize(options)
-		pair_number = 0
-		options.each_slice(2) do |pair|
-			key = pair[0]
-			value = pair[1]
+		@parsed_out = {}
+		OptionParser.new do |opts|
+			opts.banner = "Usage: example.rb [options]"
 
-			if key == ("--width")
-				@width = value.to_i
-			elsif key == ("--output") 
-				@output = value
-			else 
-				break			
-			end
-			pair_number += 1
-		end
-		
-		@input_files = options.drop(2*pair_number)
+			opts.on("-w", "--width WIDTH", Integer, "Change image width") do |w|
+    			@parsed_out[:width] = w
+  			end
+
+  			opts.on("-o", "--output OUTPUT", "Set output directory") do |o|
+    			@parsed_out[:output] = o
+  			end
+		end.parse!(options)
+		@input_files = options
 	end 
 
+	def width
+		@parsed_out[:width]
+	end
 
+	def output 
+		@parsed_out[:output]
+	end
+
+	def input_files 
+		@input_files
+	end 
 end 
+
+
