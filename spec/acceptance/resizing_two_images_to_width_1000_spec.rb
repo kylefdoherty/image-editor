@@ -2,6 +2,16 @@ require 'fileutils'
 require 'rmagick'
 
 describe 'ruby image_edit.rb' do 
+	describe '--gibberish' do
+		it 'should print out the help text' do
+			output = `ruby image_edit.rb --gibberish`
+			output.should include "Usage"
+		end
+		it 'should print out the help text because the --output is missing' do
+			output = `ruby image_edit.rb --width "1000" spec/fixtures/img1.jpg spec/fixtures/img2.jpg`
+			output.should include "Usage"
+		end
+	end
 	describe '--width 1000 --output  sandbox img1.jpg img2.jpg' do 
 		before(:each) do
 			if File.exists?("sandbox")
